@@ -5,6 +5,7 @@ import pro.sky.homeworks.homework25.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.homeworks.homework25.exceptions.EmployeeNotFoundException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -15,37 +16,39 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     ));
 
-    public String setEmployee(String firstName, String lastName) {
-        Employee e = new Employee(firstName, lastName);
-        if (!employees.contains(e)) {
-            employees.add(e);
+    @Override
+    public Employee setEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (!employees.contains(employee)) {
+            employees.add(employee);
         } else {
             throw new EmployeeAlreadyAddedException("Работник уже есть в списке");
         }
-        return e.toString();
+        return employee;
     }
 
-
-    public String deleteEmployee(String firstName, String lastName) {
-        Employee e = new Employee(firstName, lastName);
-        if (employees.contains(e)) {
-            employees.remove(e);
+    @Override
+    public Employee deleteEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (employees.contains(employee)) {
+            employees.remove(employee);
         } else {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
-        return e.toString();
+        return employee;
     }
 
-
-    public String getEmployee(String firstName, String lastName) {
-        Employee e = new Employee(firstName, lastName);
-        if (!employees.contains(e)) {
+    @Override
+    public Employee getEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
-        return e.toString();
+        return employee;
     }
 
-    public String getEmployees() {
-        return employees.toString();
+    @Override
+    public Collection<Employee> getEmployees() {
+        return new ArrayList<>(employees);
     }
 }
