@@ -19,8 +19,7 @@ public class EmployeeController {
     @GetMapping(path = "/add")
     public String addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         try {
-            employeeService.setEmployee(firstName, lastName);
-            return "{ \"firstName\": " + "\"" + firstName + "\"," + " \"lastName\": " + "\"" + lastName + "\"" + " }";
+            return employeeService.setEmployee(firstName,lastName);
         } catch (EmployeeAlreadyAddedException e) {
             return e.getMessage();
         }
@@ -29,8 +28,7 @@ public class EmployeeController {
     @GetMapping(path = "/remove")
     public String removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         try {
-            employeeService.deleteEmployee(firstName, lastName);
-            return "{ \"firstName\": " + "\"" + firstName + "\"," + " \"lastName\": " + "\"" + lastName + "\"" + " }";
+            return employeeService.deleteEmployee(firstName,lastName);
         } catch (EmployeeNotFoundException e) {
             return e.getMessage();
         }
@@ -39,8 +37,7 @@ public class EmployeeController {
     @GetMapping(path = "/find")
     public String findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         try {
-            employeeService.getEmployee(firstName, lastName);
-            return "{ \"firstName\": " + "\"" + firstName + "\"," + " \"lastName\": " + "\"" + lastName + "\"" + " }";
+            return employeeService.getEmployee(firstName,lastName);
         } catch (EmployeeNotFoundException e) {
             return e.getMessage();
         }

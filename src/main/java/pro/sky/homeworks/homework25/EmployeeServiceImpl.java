@@ -15,31 +15,34 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     ));
 
-    public void setEmployee(String firstName, String lastName) {
+    public String setEmployee(String firstName, String lastName) {
         Employee e = new Employee(firstName, lastName);
         if (!employees.contains(e)) {
             employees.add(e);
         } else {
             throw new EmployeeAlreadyAddedException("Работник уже есть в списке");
         }
+        return e.toString();
     }
 
 
-    public void deleteEmployee(String firstName, String lastName) {
+    public String deleteEmployee(String firstName, String lastName) {
         Employee e = new Employee(firstName, lastName);
         if (employees.contains(e)) {
             employees.remove(e);
         } else {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
+        return e.toString();
     }
 
 
-    public void getEmployee(String firstName, String lastName) {
+    public String getEmployee(String firstName, String lastName) {
         Employee e = new Employee(firstName, lastName);
         if (!employees.contains(e)) {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
+        return e.toString();
     }
 
     public String getEmployees() {
