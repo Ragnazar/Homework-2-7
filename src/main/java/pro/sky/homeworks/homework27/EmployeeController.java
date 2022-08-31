@@ -1,4 +1,4 @@
-package pro.sky.homeworks.homework25;
+package pro.sky.homeworks.homework27;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,22 +18,22 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public Employee addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public EmployeeBook addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return employeeService.setEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/remove")
-    public Employee removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public EmployeeBook removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return employeeService.deleteEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/find")
-    public Employee findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public EmployeeBook findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return employeeService.getEmployee(firstName, lastName);
     }
 
     @GetMapping()
-    public Collection<Employee> getEmployees() {
+    public Collection<EmployeeBook> getEmployees() {
         return employeeService.getEmployees();
     }
 }

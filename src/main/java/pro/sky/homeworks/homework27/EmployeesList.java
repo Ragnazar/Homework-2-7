@@ -1,4 +1,4 @@
-package pro.sky.homeworks.homework25;
+package pro.sky.homeworks.homework27;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
