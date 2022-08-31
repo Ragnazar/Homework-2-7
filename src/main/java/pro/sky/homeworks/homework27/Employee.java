@@ -2,13 +2,14 @@ package pro.sky.homeworks.homework27;
 
 import java.util.Objects;
 
-public class EmployeeBook {
+public class Employee {
     //Поля
     private final String firstName;
     private final String lastName;
 
+
     //Конструктор
-    public EmployeeBook(String firstName, String lastName) {
+    public Employee(String firstName, String lastName) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,14 +24,9 @@ public class EmployeeBook {
         return lastName;
     }
 
-    //Сеттеры
-   /* public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }*/
 
     //Остальные методы
     @Override
@@ -48,7 +44,7 @@ public class EmployeeBook {
         if (this.getClass() != other.getClass()) {
             return false;
         }
-        EmployeeBook c2 = (EmployeeBook) other;
+        Employee c2 = (Employee) other;
         return Objects.equals(toString(), c2.toString());
     }
 }

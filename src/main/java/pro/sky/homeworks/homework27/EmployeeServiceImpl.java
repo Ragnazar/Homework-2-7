@@ -5,49 +5,48 @@ import pro.sky.homeworks.homework27.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.homeworks.homework27.exceptions.EmployeeNotFoundException;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    public HashMap<EmployeeBook, Integer> employees = new HashMap<>(Map.of(
-            new EmployeeBook("Ivan", "Ivanov"), 0,
-            new EmployeeBook("Ivan", "Sidorov"), 1)
-    );
+    public HashMap<String, Employee> employees;
+
+    public EmployeeServiceImpl() {
+        this.employees = new HashMap<>();
+    }
 
     @Override
-    public EmployeeBook setEmployee(String firstName, String lastName) {
-        EmployeeBook employee = new EmployeeBook(firstName, lastName);
-        if (!employees.containsKey(employee)) {
-            employees.put(employee,employees.size());
-        } else {
+    public Employee addEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Работник уже есть в списке");
         }
+        employees.put(employee.getFullName(), employee);
         return employee;
     }
 
     @Override
-    public EmployeeBook deleteEmployee(String firstName, String lastName) {
-        EmployeeBook employee = new EmployeeBook(firstName, lastName);
-        if (employees.containsKey(employee)) {
-            employees.remove(employee);
-        } else {
+    public Employee deleteEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
+        employees.remove(employee.getFullName(), employee);
         return employee;
     }
 
     @Override
-    public EmployeeBook getEmployee(String firstName, String lastName) {
-        EmployeeBook employee = new EmployeeBook(firstName, lastName);
-        if (!employees.containsKey(employee)) {
+    public Employee getEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
-        return employees.get(employee);
+        return employees.get(employee.getFullName());
     }
 
     @Override
-    public Collection<EmployeeBook> getEmployees() {
-        return employees.values();
+    public Collection<Employee> getEmployees() {
+        return Collections.unmodifiableCollection(employees.values());
     }
 }

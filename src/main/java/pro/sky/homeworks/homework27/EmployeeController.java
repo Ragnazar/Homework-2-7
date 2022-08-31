@@ -18,22 +18,22 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public EmployeeBook addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-        return employeeService.setEmployee(firstName, lastName);
+    public Employee addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+        return employeeService.addEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/remove")
-    public EmployeeBook removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public Employee removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return employeeService.deleteEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/find")
-    public EmployeeBook findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public Employee findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
         return employeeService.getEmployee(firstName, lastName);
     }
 
     @GetMapping()
-    public Collection<EmployeeBook> getEmployees() {
+    public Collection<Employee> getEmployees() {
         return employeeService.getEmployees();
     }
 }
