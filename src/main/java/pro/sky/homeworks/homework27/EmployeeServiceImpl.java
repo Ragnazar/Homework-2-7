@@ -43,11 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!employees.containsKey(employee)) {
             throw new EmployeeNotFoundException("Работник отсутствует");
         }
-        return employee;
+        return employees.get(employee);
     }
 
     @Override
     public Collection<EmployeeBook> getEmployees() {
-        return (Collection<EmployeeBook>) employees;
+        return employees.values();
     }
 }
